@@ -5,8 +5,11 @@
  */
 package com.chloe.vendingmachine.ui;
 
+import com.chloe.vendingmachine.dto.Change;
+import com.chloe.vendingmachine.dto.Item;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -27,14 +30,17 @@ public class VendingMachineView {
     public void displayMenuBanner() {
         io.print("=== Menu ===");
     }
-
+    
+    public void displayMenu(Map<String, BigDecimal> itemsInStockWithCosts){
+        itemsInStockWithCosts.entrySet().forEach(entry ->{
+        System.out.println(entry.getKey() + ": $" +entry.getValue());
+        });
+    }
+    
     public String getItemSelection(){
         return io.readString("Please select an item from the menu above or 'exit' to quit");
     }
-    
-    // method for displaying the menu  ------------------------- need to put here as its currently in the service layer
-    
-    
+
     public void displayEnjoyBanner(String name) {
         io.print("Here is your change.");
         io.print("Enjoy your " + name + "!");
@@ -47,6 +53,12 @@ public class VendingMachineView {
     public void displayItemOutOfStockMsg(String name){
         io.print("Error, " + name + " is out of stock.");
     }   
+
+    public void displayChangeDuePerCoin(Map<BigDecimal, BigDecimal> changeDuePerCoin) {
+        changeDuePerCoin.entrySet().forEach(entry ->{
+                 System.out.println(entry.getKey() + "c : " +entry.getValue());
+         });
+    }
 
     public void displayExitBanner() {
         io.print("Good Bye!!!");

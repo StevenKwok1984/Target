@@ -25,3 +25,6 @@
 2021-03-18T12:22:07.217391300 :  One Haribo removed
 2021-03-18T12:31:24.590140700 :  One Snickers removed
 2021-03-19T14:28:33.789909900 :  One Haribo removed
+2021-04-04T16:21:22.354573300 :  One Haribo removed
+2021-04-04T16:26:38.287668600 :  One Malteasers removed
+2021-04-04T22:50:14.611087700 :  One Cereal bar removed

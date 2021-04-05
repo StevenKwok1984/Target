@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" time="0.114" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest" time="0.102" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="16+36-2231"/>
@@ -14,7 +14,7 @@
     <property name="user.script" value=""/>
     <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="test" value="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest"/>
+    <property name="test" value="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\User\Documents\Job stuff\Mthree Software Alumni Graduate Program\Java Basics\classwork\VendingMachine"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
@@ -45,7 +45,7 @@
     <property name="java.class.path" value="C:\Program Files\NetBeans-12.3\netbeans\java\maven\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="16"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest -Dmaven.ext.class.path=C:\Program Files\NetBeans-12.3\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest -Dmaven.ext.class.path=C:\Program Files\NetBeans-12.3\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-16"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -60,10 +60,8 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testCheckIfEnoughMoney" time="0.009"/>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testRemoveOneItemFromInventory" time="0.084"/>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testGetItemsInStockWithCosts" time="0"/>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testGetChangePerCoin" time="0.013"/>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testGetItem" time="0.008"/>
-  <testcase classname="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest" name="com.chloe.vendingmachine.service.VendingMachineServiceLayerImplTest.testSomeMethod" time="0"/>
+  <testcase classname="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest" name="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest.testGetMapOfItemNamesInStockWithCosts" time="0.06"/>
+  <testcase classname="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest" name="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest.testRemoveOneItemFromInventory" time="0.033"/>
+  <testcase classname="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest" name="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest.testGetItemInventory" time="0.002"/>
+  <testcase classname="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest" name="com.chloe.vendingmachine.dao.VendingMachineDaoFileImplTest.testGetItem" time="0.007"/>
 </testsuite>

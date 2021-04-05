@@ -43,7 +43,6 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao {
         return items.get(name).getInventory();
     }
 
-    //Returns the item if the invenorry
     @Override
     public void removeOneItemFromInventory(String name) throws VendingMachinePersistenceException {
         loadMachine();

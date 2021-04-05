@@ -22,7 +22,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     //the controller and DAOs.
     
     private VendingMachineAuditDao auditDao;
-    VendingMachineDao dao;
+    private VendingMachineDao dao;
 
     public VendingMachineServiceLayerImpl(VendingMachineAuditDao auditDao, VendingMachineDao dao) {
         this.auditDao = auditDao;
@@ -33,42 +33,31 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     public void checkIfEnoughMoney(Item item, BigDecimal inputMoney) throws InsufficientFundsException {
         //Checks if the user has input enough money to buy selected item
         //If the cost of the item is greater than the amount of money put in
-        if (item.getCost().compareTo(inputMoney)==1) {  //----------------------- how do i make this boolean
+        if (item.getCost().compareTo(inputMoney)==1) {
             throw new InsufficientFundsException (
             "ERROR: insufficient funds, you have only input "+ inputMoney);  
         }
     }
     
-        
     @Override
-    public void getItemsInStockWithCosts () throws VendingMachinePersistenceException{
+    public Map<String, BigDecimal>  getItemsInStockWithCosts () throws VendingMachinePersistenceException{
         //Map of key=name, value=cost
          Map<String, BigDecimal> itemsInStockWithCosts = dao.getMapOfItemNamesInStockWithCosts();
-         
-         itemsInStockWithCosts.entrySet().forEach(entry ->{
-                 System.out.println(entry.getKey() + ": $" +entry.getValue()); // ---------------- how to put this in the view?
-         });
+         return itemsInStockWithCosts;
     }
-
-    //Return display change per coin, return = map..
-    public void displayChangePerCoin(Item item, BigDecimal money) {
-        BigDecimal itemCost = item.getCost();
-        //Map <Coin, amount of coin>
-        Map<BigDecimal, BigDecimal> changeDuePerCoin = Change.changeDuePerCoin(itemCost, money);
-        //return changeDuePerCoin;
-        changeDuePerCoin.entrySet().forEach(entry ->{
-                 System.out.println(entry.getKey() + "c : " +entry.getValue()); // ------------------- how to put this in the view?
-         });
-
-    }
-    
     
     @Override
-    public void getItem(String name, BigDecimal inputMoney) throws InsufficientFundsException, NoItemInventoryException, VendingMachinePersistenceException {
-        Item wantedItem = dao.getItem(name);  //-------------- --------the user has to type in exactly the same key i.e. Kitkat not kitkat
-        //--------------------------------------------------------------------------how do i change that?
+    public Map<BigDecimal, BigDecimal> getChangePerCoin(Item item, BigDecimal money) {
+        BigDecimal itemCost = item.getCost();
+        Map<BigDecimal, BigDecimal> changeDuePerCoin = Change.changeDuePerCoin(itemCost, money);
+        return changeDuePerCoin;
+    }
+    
+    @Override
+    public Item getItem(String name, BigDecimal inputMoney) throws InsufficientFundsException, NoItemInventoryException, VendingMachinePersistenceException {
+        Item wantedItem = dao.getItem(name);   //the inputs are case sensitive.
         
-        //Check to make sure that the item exists in the items map
+        //If the wanted item returns null, the item does not exist in the items map
         if (wantedItem == null) {
             throw new NoItemInventoryException (
                 "ERROR: there are no " + name + "'s in the vending machine.");
@@ -79,27 +68,25 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         
         //If they have, check that the item is in stock and if so, remove one item from the inventory
         removeOneItemFromInventory(name);
-        //---------------------------------------------------------------------I want to display a display change banner here, how can I do that?
-        //Give user their change
-        displayChangePerCoin(wantedItem,inputMoney);
+        return wantedItem;
+//        //Give user their change
+//        return getChangePerCoin(wantedItem,inputMoney);
     }
+    
     
     public void removeOneItemFromInventory (String name) throws NoItemInventoryException, VendingMachinePersistenceException {
         //Remove one item from the inventory only when there are items to be removed, i.e. inventory>0.
         if (dao.getItemInventory(name)>0) {
             dao.removeOneItemFromInventory(name);
+            //if an items removed, write to the audit log
             auditDao.writeAuditEntry(" One " + name + " removed");
         } else {
+            //If there are no items left to remove, throw an exception
             throw new NoItemInventoryException (
             "ERROR: " + name + " is out of stock.");
         }
     }
 
-    @Override
-    public void RemoveOneItemFromInventory(String name) throws NoItemInventoryException, VendingMachinePersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
     
     

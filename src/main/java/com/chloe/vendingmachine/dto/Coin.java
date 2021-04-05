@@ -35,6 +35,8 @@ public enum Coin {
         }
         return null;
     }
+    
+    
 }
 
 //Enums are classes that have a fixed set of constants or varibales that do not tend to change.

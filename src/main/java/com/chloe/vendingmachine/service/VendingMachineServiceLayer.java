@@ -8,6 +8,7 @@ package com.chloe.vendingmachine.service;
 import com.chloe.vendingmachine.dao.VendingMachinePersistenceException;
 import com.chloe.vendingmachine.dto.Item;
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  *
@@ -18,20 +19,18 @@ public interface VendingMachineServiceLayer {
     void checkIfEnoughMoney(Item item, BigDecimal inputMoney)throws 
             InsufficientFundsException;
     
-    void RemoveOneItemFromInventory(String name) throws 
+    void removeOneItemFromInventory(String name) throws 
             NoItemInventoryException, 
             VendingMachinePersistenceException;
     
-    void getItemsInStockWithCosts()throws 
+    Map<String, BigDecimal>  getItemsInStockWithCosts () throws 
             VendingMachinePersistenceException;
 
-    void getItem(String name, BigDecimal inputMoney) throws 
+    Item getItem(String name, BigDecimal inputMoney) throws 
             InsufficientFundsException, 
             NoItemInventoryException, 
             VendingMachinePersistenceException;
     
-//    void checkIfItemInStock(String name) throws 
-//            NoItemInventoryException, 
-//            VendingMachinePersistenceException;
+    Map<BigDecimal, BigDecimal> getChangePerCoin(Item item, BigDecimal money);
     
 }

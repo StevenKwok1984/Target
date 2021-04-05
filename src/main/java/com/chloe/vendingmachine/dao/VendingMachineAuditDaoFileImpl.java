@@ -16,8 +16,17 @@ import java.time.LocalDateTime;
  */
 public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
 
-    public static final String AUDIT_FILE = "audit.txt";
+    private final String AUDIT_FILE;
+    //Default constructor
+    public VendingMachineAuditDaoFileImpl() {
+        this.AUDIT_FILE = "audit.txt";
+    }
+    //Contructor for testing
+    public VendingMachineAuditDaoFileImpl(String auditTestFile) {
+        this.AUDIT_FILE = auditTestFile;
+    }
     
+
     @Override
     public void writeAuditEntry(String entry) throws VendingMachinePersistenceException {
          PrintWriter out;

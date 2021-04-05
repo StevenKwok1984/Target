@@ -14,6 +14,7 @@ import com.chloe.vendingmachine.ui.UserIO;
 import com.chloe.vendingmachine.ui.UserIOConsoleImpl;
 import com.chloe.vendingmachine.ui.VendingMachineView;
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,9 +45,10 @@ public class VendingMachineController {
         inputMoney = getMoney();
             while (keepGoing) {
             try {
-                //Display the menu - keys & values of the map
+                //Display the menu and get a selection
                 itemSelection = getItemSelection();
                 
+                //If the user selects Exit, the program is exited
                 if (itemSelection.equalsIgnoreCase("Exit")) {
                     keepGoing = false;
                     break;
@@ -61,13 +63,11 @@ public class VendingMachineController {
             }
             }
             exitMessage();
-            
-//        } catch (ClassRosterPersistenceException e) {
-//            view.displayErrorMessage(e.getMessage());
-//        }
+
     }
     private void getMenu() throws VendingMachinePersistenceException {
-        service.getItemsInStockWithCosts();
+        Map<String, BigDecimal> itemsInStockWithCosts = service.getItemsInStockWithCosts();
+        view.displayMenu(itemsInStockWithCosts);
     }    
     
     private BigDecimal getMoney() {
@@ -87,31 +87,14 @@ public class VendingMachineController {
     }
     
     private void getItem(String name, BigDecimal money) throws InsufficientFundsException, NoItemInventoryException, VendingMachinePersistenceException {
-        service.getItem(name, money);
+        Item wantedItem = service.getItem(name, money);
+        Map<BigDecimal, BigDecimal> changeDuePerCoin = service.getChangePerCoin(wantedItem, money);
+        view.displayChangeDuePerCoin(changeDuePerCoin);
         view.displayEnjoyBanner(name);
     }
     
 
 }
-        
-
-
-        
-        //Check that there is sufficient funds
-        //if there isn't sufficient funds then print "Insufficient funds"
-        //if there is, print out the change left 
-        //Minus one item from the inventory
-        
-//        Item removedItem = service.removeItem("kitkat");
-    
-    
-    
-//    
-//    private boolean sufficientFundsCheck(BigDecimal inputMoney, BigDecimal itemCost){
-//        return inputMoney > itemCost;
-//    }
-    
-
     
     
 

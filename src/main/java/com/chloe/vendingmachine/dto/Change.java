@@ -16,25 +16,6 @@ import java.util.Map;
  * @author User
  */
 public class Change {
-//    private int noOfDollars;   // 100c
-//    private int noOfQuarters;  // 25c
-//    private int noOfDimes;     // dime = 10 c
-//    private int noOfNickels;   // nickel = 5 c
-//    private int noOfPennies;   // penny = 1c
-    
-//    static int[] coins = {Coin.
-    //static int[] coins = {100, 25, 10, 5, 1};  //duno why i made this static
-    
-    //Convert enum value to a string, enum array.values
-    
-    //static BigDecimal[] coins = {new BigDecimal("25"), new BigDecimal("10"), new BigDecimal("5"), new BigDecimal("1")};
-    
-    //static List <Enum> enumCoins = Arrays.asList(Coin.values());
-    
-
-    
-    //private List<BigDecimal> coinList = new ArrayList<BigDecimal>(Arrays.asList(new BigDecimal("100"), new BigDecimal("25"), new BigDecimal("10"), new BigDecimal("5"), new BigDecimal("1"));
-    
     
     public static BigDecimal changeDueInPennies (BigDecimal itemCost, BigDecimal money) {
         BigDecimal changeDueInPennies = (money.subtract(itemCost)).multiply(new BigDecimal("100"));
@@ -54,7 +35,6 @@ public class Change {
               coins.add(new BigDecimal(coin));
           }
           
-        
         BigDecimal changeDueInPennies = changeDueInPennies(itemCost, money);
         //Calculates the number of quarters, dimes, nickels and pennies due 
         //back to the user.
@@ -66,7 +46,7 @@ public class Change {
         //for every coin in the array:
         for (BigDecimal coin : coins) {
             //if the change is greater than or equal to the coin amount
-            if (changeDueInPennies.compareTo(coin) > 0) {
+            if (changeDueInPennies.compareTo(coin) >= 0) {
                 //If the coin amounts does not exactly divide by the change amount
                 if (!changeDueInPennies.remainder(coin).equals(zero)) {
                     //the number of coins of coin[i] required will be the floor division of change amount/coin
@@ -91,26 +71,12 @@ public class Change {
             } else {
                 ;  //"pass"
             }
-        }
+        }//end of for loop
         return amountPerCoin;
     }
-                                     
-//    public static void main(String[] args) {
-//        BigDecimal itemCost = new BigDecimal("1.27");
-//        BigDecimal money = new BigDecimal("2");
-//        
-//        BigDecimal changeDueInPennies = changeDueInPennies(itemCost,money);
-//        Map<BigDecimal, BigDecimal> changeDuePerCoin = changeDuePerCoin(changeDueInPennies);
-//
-//        System.out.println("the change should add to " + money.subtract(itemCost));
-//        System.out.println(changeDuePerCoin.toString());
-//        
-//    }
+
+    
+    
+    
+    
 }
-
-// BIG DECIMAL:
-
-//CompareTo returns:
-// 1: when the first BigDecimal is greater than the secondBigDecimal.
-// 0: when the first BigDecimal is equal to the second BigDecimal.
-//-1: when the first BigDecimal is less than the second BigDecimal.
