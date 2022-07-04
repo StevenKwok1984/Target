@@ -28,3 +28,4 @@
 2021-04-04T16:21:22.354573300 :  One Haribo removed
 2021-04-04T16:26:38.287668600 :  One Malteasers removed
 2021-04-04T22:50:14.611087700 :  One Cereal bar removed
+2022-07-04T18:16:40.172654 :  One Starburst removed
